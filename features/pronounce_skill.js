@@ -102,6 +102,7 @@ module.exports = function (controller) {
 
   controller.on("direct_mention", async (bot, message) => {
     const { name, lang, action } = extractNameshoutInfo(message);
+    // TODO: apply a similarity wording processor here or simple NLP to provide more option to end-user
     if (action === "pronounces") {
       const nameShoutPersonData = await searchPersonNamePath(name, lang);
       await bot.reply(message, buildNameShoutResponse(nameShoutPersonData));
